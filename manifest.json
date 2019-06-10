@@ -1,0 +1,35 @@
+{
+	"helpUrl": "https://docs.elmah.io/elmah-io-apps-trello/",
+	"variables": [{
+		"key": "apikey",
+		"name": "API Key",
+		"description": "A Trello API key",
+		"example": "6a35742f3ee6421b0977ede56b76570f",
+		"type": "text",
+		"required": true
+	},{
+		"key": "token",
+		"name": "Token",
+		"description": "A Trello token",
+		"example": "576f81e2712a585e75c52d98bcd62df93d696a54a0e513e5be49092ebd3706b4",
+		"type": "password",
+		"required": true
+	},{
+		"key": "listid",
+		"name": "List ID",
+		"description": "The ID of the list to create cards on",
+		"example": "5cfe9e2eaebb3a5fcae05589",
+		"type": "text",
+		"required": true
+	}],
+	"rule": {
+		"title": "Create a new card on Trello on new errors",
+		"query": "isNew:true AND (severity:Error OR severity:Fatal)",
+		"then": {
+			"type": "http",
+			"url": "https://api.trello.com/1/cards?idList=$listid&key=$apikey&token=$token",
+			"method": "post",
+			"testUrl": "https://api.trello.com/1/lists/$listid?key=$apikey&token=$token"
+		}
+	}
+}
