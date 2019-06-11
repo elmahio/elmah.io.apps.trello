@@ -27,7 +27,7 @@
 		"query": "isNew:true AND (severity:Error OR severity:Fatal)",
 		"then": {
 			"type": "http",
-			"url": "https://api.trello.com/1/cards?idList=$listid&key=$apikey&token=$token",
+			"url": "https://api.trello.com/1/cards?idList=$listid&key=$apikey&token=$token&name=$message&desc=Log: $logName%0ATime: $time%0AURL: $url%0AHostname: $hostName%0AStatus Code: $statusCode%0AType: $type%0ASource: $source%0AUser: $user%0ALink: https://app.elmah.io/errorlog/error?logid=$logId%26id=$id",
 			"method": "post",
 			"testUrl": "https://api.trello.com/1/lists/$listid?key=$apikey&token=$token"
 		}
